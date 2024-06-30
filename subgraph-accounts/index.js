@@ -45,7 +45,7 @@ async function startApolloServer() {
         return {
           ...userInfo,
           dataSources: {
-            AccountsAPI: new AccountsAPI(),
+            AccountsAPI: new AccountsAPI({ cache }),
           },
         };
       },
