@@ -1,6 +1,13 @@
-rover subgraph publish <APOLLO_GRAPH_REF> \
+rover subgraph publish airlock-voyage-zn34cd@current \
   --schema ./monolith/schema.graphql \
   --name monolith \
   --routing-url http://localhost:4001
 
-  
+rover subgraph publish airlock-voyage-zn34cd@current \
+    --schema ./subgraph-accounts/schema.graphql \
+    --name accounts \
+    --routing-url http://localhost:4002
+
+SUPERGRAPH DEV TOOL:
+rover dev --supergraph-config ./router/supergraph-config.yaml \
+   --router-config ./router/router-config.yaml

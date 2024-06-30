@@ -5,5 +5,5 @@ extend schema
   )
 
 type Query {
-  _todo: String @shareable @inaccessible
+  user(id: ID!): User @override(from: "monolith", label: "percent(25)")
 }
