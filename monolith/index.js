@@ -1,7 +1,6 @@
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
 const { buildSubgraphSchema } = require("@apollo/subgraph");
-
 const { readFileSync } = require("fs");
 const axios = require("axios");
 const gql = require("graphql-tag");
@@ -19,7 +18,7 @@ const PaymentsAPI = require("./datasources/payments");
 
 async function startApolloServer() {
   const server = new ApolloServer({
-    schema: buildSubgraphSchema ({
+    schema: buildSubgraphSchema({
       typeDefs,
       resolvers,
     }),
@@ -59,10 +58,22 @@ async function startApolloServer() {
       },
       listen: {
         port,
+        onHealthCheck: async () => {
+          console.log('Health check passed');
+        },
+        cors: {
+          origin: 'https://studio.apollographql.com',
+          methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+          allowedHeaders: 'Content-Type, Authorization',
+          credentials: true,
+          exposedHeaders: 'Access-Control-Allow-Private-Network',
+          preflightContinue: false,
+          optionsSuccessStatus: 204,
+        }
       },
     });
 
-    console.log(`🚀  Server ready at ${url}`);
+    console.log(`🚀 Server ready at ${url}`);
   } catch (err) {
     console.error(err);
   }

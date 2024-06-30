@@ -26,6 +26,7 @@
     "@apollo/subgraph": "^2.8.2",
     "axios": "^1.6.2",
     "concurrently": "^6.3.0",
+    "cors": "^2.8.5",
     "date-fns": "^2.25.0",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
