@@ -1,0 +1,6 @@
+rover subgraph publish <APOLLO_GRAPH_REF> \
+  --schema ./monolith/schema.graphql \
+  --name monolith \
+  --routing-url http://localhost:4001
+
+  
